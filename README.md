@@ -12,6 +12,58 @@ A cheat-sheet for creating web apps with the Django framework using the Python l
 - :man: [Using the Admin page](#man-using-the-admin-page)
 
 
+## Install Django
+
+- Navigate to a folder where you want to install Django repo for installation
+- Run command to clone the latest build
+
+`$ git clone https://github.com/django/django.git`
+
+- Prepare and install Django (this can be done in Virtualenv - see setup pyenv w/ virtualenv below)
+
+`$ python install -r django/`
+
+- You're now good to go setup a `$ django-admin startproject <project_name>`
+
+## Setup pyenv with virtualenv (for development)
+This sets up pyenv so that you can switch between python versions as well as setup a virtualenv
+
+Setup: Follow instruction pyenv-virtualenv
+
+[https://github.com/pyenv/pyenv-virtualenv#installing-as-a-pyenv-plugin](https://github.com/pyenv/pyenv-virtualenv#installing-as-a-pyenv-plugin)
+
+
+Or... For Mac OS users:
+- Run Command `$ brew install pyenv-virtualenv`
+
+### Usage
+Create a Virtual environment with the selected version of python.
+Swap the `%environment_name%` with the any name you'd like to use for your environment
+
+`$ pyenv virtualenv 3.7.1 %environment_name%`
+
+### setting up
+
+Setup Python 3.7.1
+`$ pyenv virtualenv local 3.7.1`
+
+
+
+### Activate
+
+Activate the pyenv by running the following command:
+`$ pyenv activate envy`
+
+### De-activate the sessions
+
+Run the following command to disable the session:
+
+`$ source deactivate`
+
+The above commands shuts it down.
+
+
+
 ## :snake: Initializing pipenv (optional)
 - Make main folder with `$ mkdir <folder>` and navigate to it with `$ cd <folder>`
 - Initialize pipenv with `$ pipenv install`
@@ -92,7 +144,7 @@ from django.http import HttpResponse
 def index(request):
     return HttpResponse("Hello, World!")
 ```
-- Still within the app directory, open (or create)  `urls.py` 
+- Still within the app directory, open (or create)  `urls.py`
 ```python
 from django.urls import path
 from . import views
@@ -152,7 +204,7 @@ def index(request):
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		
+
 		<link rel="stylesheet" href="{% static 'styles.css' %}">
 	</head>
 </html>
@@ -216,7 +268,7 @@ class Album(models.Model):
 >>> m = Musician.objects.get(pk=1)
 >>> a = m.album_set.get()
 ```
- 
+
 - A many-to-many relationship can be made with a `ManyToManyField`:
 ```python
 class Topping(models.Model):
@@ -233,7 +285,7 @@ class Pizza(models.Model):
 ```python
 ForeignKey(SomeModel, unique=True)
 ```
-	
+
 - For more detail, the [official documentation for database models]( https://docs.djangoproject.com/en/2.0/topics/db/models/) provides a lot of useful information and examples.
 
 ## :postbox: Creating model objects and queries
